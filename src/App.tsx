@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import BoardComponent from './classes/boardComponent';
-import GameSettings from './components/GameSettings';
+import GameSettings from './components/gamesettings/GameSettings';
 
 const App: React.FC = () => {
   const [boardSize, setBoardSize] = useState<number>(0);

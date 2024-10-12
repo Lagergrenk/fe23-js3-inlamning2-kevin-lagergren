@@ -1,5 +1,6 @@
 import React from 'react';
-import { CellType } from '../types/CellType';
+import './cell.css';
+import { CellType } from '../../types/CellType';
 
 type CellProps = {
   cell: CellType;

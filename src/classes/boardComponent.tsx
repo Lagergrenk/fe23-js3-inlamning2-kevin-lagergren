@@ -1,6 +1,6 @@
 import React from 'react';
 import createBoard from '../utils/utils.js';
-import Cell from '../components/Cell';
+import Cell from '../components/cell/Cell.js';
 import { CellType } from '../types/CellType.js';
 
 type BoardComponentProps = {
@@ -103,6 +103,8 @@ class BoardComponent extends React.Component<BoardComponentProps, BoardState> {
       display: 'grid',
       gridTemplateColumns: `repeat(${Math.sqrt(this.props.boardSize)}, 50px)`,
       gridTemplateRows: `repeat(${Math.sqrt(this.props.boardSize)}, 50px)`,
+      alignItems: 'center',
+      justifyItems: 'center',
     };
     return (
       //Render the board
