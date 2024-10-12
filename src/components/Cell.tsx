@@ -22,7 +22,7 @@ const Cell: React.FC<CellProps> = ({ cell, onClick }) => {
           : cell.numberOfNeighbouringMines > 0
           ? cell.numberOfNeighbouringMines
           : ' '
-        : '?'}{' '}
+        : '?'}
       {/* if cell.visible=true, display the number of neighbouring mines if it is greater than 0, otherwise display a space */}
     </div>
   );
