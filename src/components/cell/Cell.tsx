@@ -19,7 +19,7 @@ const Cell: React.FC<CellProps> = ({ cell, onClick }) => {
     <div className='cell' onClick={handleClick}>
       {cell.visible
         ? cell.hasMine
-          ? '💣'
+          ? '🧨'
           : cell.numberOfNeighbouringMines > 0
           ? cell.numberOfNeighbouringMines
           : ' '
