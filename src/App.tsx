@@ -1,4 +1,4 @@
-import BoardComponent from './classes/boardComponent';
+import BoardClass from './classes/boardClass';
 import GameSettings from './components/gamesettings/GameSettings';
 import useGameLogic from './hooks/useGameLogic';
 
@@ -11,7 +11,7 @@ const App: React.FC = () => {
       {/* Pass the boardSize and mineCount to the BoardComponent */}
       {/* Rendeer the boardComponent if isGameStarted = true */}
       {isGameStarted && (
-        <BoardComponent boardSize={boardSize} mineCount={mineCount} onChangeDifficulty={handleChangeDifficulty} />
+        <BoardClass boardSize={boardSize} mineCount={mineCount} onChangeDifficulty={handleChangeDifficulty} />
       )}
     </>
   );

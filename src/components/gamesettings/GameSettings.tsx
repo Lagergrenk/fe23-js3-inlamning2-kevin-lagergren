@@ -4,7 +4,7 @@ type GameSettingsProps = {
   onClick: (boardSize: number, mineCount: number) => void;
 };
 
-type gameSettings = {
+type GameSettings = {
   boardSize: number;
   mineCount: number;
   buttonText: string;
@@ -16,7 +16,7 @@ const GameSettings: React.FC<GameSettingsProps> = ({ onClick }) => {
   // first value = boardSize, second value = mineCount
 
   // gameSettinsg arrayObject, add to the array the boardSize, mineCount and buttonText if you want to add a new difficulty
-  const gameSettings: gameSettings[] = [
+  const gameSettings: GameSettings[] = [
     { boardSize: 4, mineCount: 1, buttonText: 'Easy' },
     { boardSize: 16, mineCount: 4, buttonText: 'Medium' },
     { boardSize: 25, mineCount: 7, buttonText: 'Hard' },
@@ -28,6 +28,7 @@ const GameSettings: React.FC<GameSettingsProps> = ({ onClick }) => {
     { boardSize: 256, mineCount: 255, buttonText: 'Not worth it' },
   ];
 
+  // Render the gamesettings buttons
   return (
     <div className='gamesettings-container'>
       <h1>Choose Difficulty!</h1>

@@ -3,7 +3,7 @@ import createBoard from '../utils/utils.js';
 import Cell from '../components/cell/Cell.js';
 import { CellType } from '../types/CellType.js';
 
-type BoardComponentProps = {
+type BoardClassProps = {
   boardSize: number;
   mineCount: number;
   onChangeDifficulty: () => void;
@@ -14,9 +14,9 @@ type BoardState = {
   isWinner: boolean;
 };
 
-class BoardComponent extends React.Component<BoardComponentProps, BoardState> {
+class BoardClass extends React.Component<BoardClassProps, BoardState> {
   // Initialize the state with a board, gameOver state and isWinner state
-  constructor(props: BoardComponentProps) {
+  constructor(props: BoardClassProps) {
     super(props);
     this.state = {
       board: createBoard(props.boardSize, props.mineCount),
@@ -130,4 +130,4 @@ class BoardComponent extends React.Component<BoardComponentProps, BoardState> {
   }
 }
 
-export default BoardComponent;
+export default BoardClass;
