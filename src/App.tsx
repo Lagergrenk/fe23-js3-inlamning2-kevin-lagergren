@@ -1,22 +1,10 @@
-import { useState } from 'react';
 import BoardComponent from './classes/boardComponent';
 import GameSettings from './components/gamesettings/GameSettings';
+import useGameLogic from './hooks/useGameLogic';
 
 const App: React.FC = () => {
-  const [boardSize, setBoardSize] = useState<number>(0);
-  const [mineCount, setMineCount] = useState<number>(0);
-  const [isGameStarted, setIsGameStarted] = useState<boolean>(false);
-
-  const handleGameSettingsClick = (newBoardSize: number, newMineCount: number) => {
-    setBoardSize(newBoardSize);
-    setMineCount(newMineCount);
-    setIsGameStarted(true);
-  };
-
-  const handleChangeDifficulty = () => {
-    setIsGameStarted(false);
-  };
-
+  // Custom hook to manage game logic
+  const { boardSize, mineCount, isGameStarted, handleGameSettingsClick, handleChangeDifficulty } = useGameLogic();
   return (
     <>
       {!isGameStarted && <GameSettings onClick={handleGameSettingsClick} />}
