@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './GameSettings.css';
 type GameSettingsProps = {
   onClick: (boardSize: number, mineCount: number) => void;
 };

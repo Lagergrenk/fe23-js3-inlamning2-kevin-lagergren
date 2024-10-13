@@ -14,7 +14,7 @@ const useGameLogic = () => {
     setIsGameStarted(true);
   };
 
-  // Function to handle the change in difficulty
+  // Set isGameStarted to false
   const handleChangeDifficulty = () => {
     setIsGameStarted(false);
   };
