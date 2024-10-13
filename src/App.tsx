@@ -7,8 +7,9 @@ const App: React.FC = () => {
   const { boardSize, mineCount, isGameStarted, handleGameSettingsClick, handleChangeDifficulty } = useGameLogic();
   return (
     <>
+      {/* Render the GameSettings component if isGameStarted = false */}
       {!isGameStarted && <GameSettings onClick={handleGameSettingsClick} />}
-      {/* Pass the boardSize and mineCount to the BoardComponent */}
+      {/* Pass the boardSize and mineCount to the BoardClass */}
       {/* Rendeer the boardComponent if isGameStarted = true */}
       {isGameStarted && (
         <BoardClass boardSize={boardSize} mineCount={mineCount} onChangeDifficulty={handleChangeDifficulty} />
