@@ -1,4 +1,4 @@
-import BoardClass from './classes/boardClass';
+import BoardClass from './classes/BoardClass';
 import GameSettings from './components/gamesettings/GameSettings';
 import useGameLogic from './hooks/useGameLogic';
 
