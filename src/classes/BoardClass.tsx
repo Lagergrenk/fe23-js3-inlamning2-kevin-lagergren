@@ -41,7 +41,15 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
     if (!clickedCell) return; // if clickedCell=undefined, do nothing
 
     // Update gameOver state if the clicked cell is a mine
+    // Show all the cells if the clicked cell is a mine
     const isMine = this.checkIfMine(clickedCell);
+    if (isMine) {
+      this.setState({
+        board: this.revealAllCells(this.state.board),
+        gameOver: true,
+      });
+      return;
+    }
 
     // Update visible prop of the clicked cell
     const newBoard = this.updateBoardWithVisibility(index);
@@ -55,6 +63,7 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
         gameOver: false,
         isWinner: true,
       });
+
       return;
     }
 
@@ -94,6 +103,13 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
     return board.every((cell: CellType) => {
       // Check if the cell is visible or has a mine
       return cell.visible || cell.hasMine;
+    });
+  };
+
+  // Helper function: Set all the cells to visible
+  revealAllCells = (board: CellType[]): CellType[] => {
+    return board.map((cell: CellType) => {
+      return { ...cell, visible: true };
     });
   };
 

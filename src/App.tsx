@@ -4,7 +4,7 @@ import useGameLogic from './hooks/useGameLogic';
 
 const App: React.FC = () => {
   // Custom hook to manage game logic
-  const { boardSize, mineCount, isGameStarted, handleGameSettingsClick, handleChangeDifficulty } = useGameLogic();
+  const { boardSize, mineCount, isGameStarted, handleChangeDifficulty, handleGameSettingsClick } = useGameLogic();
   return (
     <>
       {/* Render the GameSettings component if isGameStarted = false */}
