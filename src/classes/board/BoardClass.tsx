@@ -1,7 +1,8 @@
 import React from 'react';
-import createBoard from '../utils/utils.js';
-import Cell from '../components/cell/Cell.js';
-import { CellType } from '../types/CellType.js';
+import createBoard from '../../utils/utils.js';
+import Cell from '../../components/cell/Cell.js';
+import { CellType } from '../../types/CellType.js';
+import './Board.css';
 
 type BoardClassProps = {
   boardSize: number;
@@ -30,6 +31,7 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
     this.setState({
       board: createBoard(this.props.boardSize, this.props.mineCount),
       gameOver: false,
+      isWinner: false,
     });
   };
 
@@ -124,21 +126,30 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
     };
     return (
       //Render the board
-      <div className='board' style={boardStyle}>
-        {this.state.board.map((cell: CellType) => (
-          <Cell key={cell.index} cell={cell} onClick={this.handleCellClick} />
-        ))}
-        {this.state.gameOver && (
-          <div className='board__you-lose-container'>
-            Game Over <button onClick={this.handleTryAgainClick}>Try again</button>
-          </div>
-        )}
-        {this.state.isWinner && (
-          <div className='board__you-win-container'>
-            You Win! <button onClick={this.handleTryAgainClick}>Try again</button>
-          </div>
-        )}
-        <div>
+      <div className='board__container'>
+        <div className='board' style={boardStyle}>
+          {this.state.board.map((cell: CellType) => (
+            <Cell key={cell.index} cell={cell} onClick={this.handleCellClick} />
+          ))}
+          {this.state.gameOver && (
+            <div className='board__you-lose-container'>
+              <div className='board__you-lose-text'>
+                Game Over <button onClick={this.handleTryAgainClick}>Try again</button>
+                <button onClick={this.props.onChangeDifficulty}>Change Difficulty</button>
+              </div>
+            </div>
+          )}
+          {this.state.isWinner && (
+            <div className='board__you-win-container'>
+              <div className='board__you-win-text'>
+                <p>You Win!</p>
+                <button onClick={this.handleTryAgainClick}>Play again</button>
+                <button onClick={this.props.onChangeDifficulty}>Change Difficulty</button>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className='board__change-difficutly-container'>
           <button onClick={this.props.onChangeDifficulty}>Change Difficulty</button>
         </div>
       </div>
