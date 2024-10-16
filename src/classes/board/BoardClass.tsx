@@ -100,7 +100,7 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
     });
   };
 
-  // Helper function: Check if all the cells left are mines
+  // Helper function: Check if all the cells left are mines or visible
   isOnlyMinesLeft = (board: CellType[]): boolean => {
     return board.every((cell: CellType) => {
       // Check if the cell is visible or has a mine
