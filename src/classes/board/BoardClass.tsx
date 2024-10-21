@@ -1,7 +1,7 @@
 import React from 'react';
 import createBoard from '../../utils/utils.js';
-import Cell from '../../components/cell/Cell.js';
-import { CellType } from '../../types/CellType.js';
+import Cell from '../../components/cell/Cell';
+import { CellType } from '../../types/CellType';
 import {
   getClickedCell,
   checkIfMine,
