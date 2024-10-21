@@ -18,7 +18,7 @@ type BoardClassProps = {
 };
 type BoardState = {
   board: CellType[];
-  gameOver: boolean;
+  isGameOver: boolean;
   isWinner: boolean;
 };
 
@@ -28,7 +28,7 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
     super(props);
     this.state = {
       board: createBoard(props.boardSize, props.mineCount),
-      gameOver: false,
+      isGameOver: false,
       isWinner: false,
     };
   }
@@ -37,13 +37,13 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
     // If the try again button is clicked, reset the board and gameOver status
     this.setState({
       board: createBoard(this.props.boardSize, this.props.mineCount),
-      gameOver: false,
+      isGameOver: false,
       isWinner: false,
     });
   };
 
   handleCellClick = (index: number) => {
-    if (this.state.gameOver) return; // if gameover=true, do nothing
+    if (this.state.isGameOver) return; // if gameover=true, do nothing
 
     // Find the clicked cell
     const clickedCell = getClickedCell(this.state.board, index);
@@ -55,7 +55,7 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
     if (isMine) {
       this.setState({
         board: revealAllCells(this.state.board),
-        gameOver: true,
+        isGameOver: true,
       });
       return;
     }
@@ -69,7 +69,7 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
     if (isWin) {
       this.setState({
         board: newBoard,
-        gameOver: false,
+        isGameOver: false,
         isWinner: true,
       });
 
@@ -79,7 +79,7 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
     // initialize the state with the new board, gameOver status and isWinner status
     this.setState({
       board: newBoard,
-      gameOver: isMine,
+      isGameOver: isMine,
       isWinner: isWin,
     });
   };
@@ -100,7 +100,7 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
           {this.state.board.map((cell: CellType) => (
             <Cell key={cell.index} cell={cell} onClick={this.handleCellClick} />
           ))}
-          {this.state.gameOver && (
+          {this.state.isGameOver && (
             <div className='board__you-lose-container'>
               <div className='board__you-lose-text'>
                 Game Over <button onClick={this.handleTryAgainClick}>Try again</button>
