@@ -2,6 +2,13 @@ import React from 'react';
 import createBoard from '../../utils/utils.js';
 import Cell from '../../components/cell/Cell.js';
 import { CellType } from '../../types/CellType.js';
+import {
+  getClickedCell,
+  checkIfMine,
+  updateBoardWithVisibility,
+  isOnlyMinesLeft,
+  revealAllCells,
+} from './boardHelper.js';
 import './Board.css';
 
 type BoardClassProps = {
@@ -39,26 +46,26 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
     if (this.state.gameOver) return; // if gameover=true, do nothing
 
     // Find the clicked cell
-    const clickedCell = this.getClickedCell(index);
+    const clickedCell = getClickedCell(this.state.board, index);
     if (!clickedCell) return; // if clickedCell=undefined, do nothing
 
     // Update gameOver state if the clicked cell is a mine
     // Show all the cells if the clicked cell is a mine
-    const isMine = this.checkIfMine(clickedCell);
+    const isMine = checkIfMine(clickedCell);
     if (isMine) {
       this.setState({
-        board: this.revealAllCells(this.state.board),
+        board: revealAllCells(this.state.board),
         gameOver: true,
       });
       return;
     }
 
     // Update visible prop of the clicked cell
-    const newBoard = this.updateBoardWithVisibility(index);
+    const newBoard = updateBoardWithVisibility(this.state.board, index);
 
     // Check if the game is won
     // if game is won, set isWinner=true
-    const isWin = this.isOnlyMinesLeft(newBoard);
+    const isWin = isOnlyMinesLeft(newBoard);
     if (isWin) {
       this.setState({
         board: newBoard,
@@ -74,44 +81,6 @@ class BoardClass extends React.Component<BoardClassProps, BoardState> {
       board: newBoard,
       gameOver: isMine,
       isWinner: isWin,
-    });
-  };
-
-  // Helper function: Find the clicked cell
-  getClickedCell = (index: number): CellType | undefined => {
-    return this.state.board.find((cell: CellType) => cell.index === index);
-  };
-
-  // Helper function: Check if the clicked cell is a mine
-  checkIfMine = (cell: CellType): boolean => {
-    if (cell.hasMine) {
-      return true;
-    }
-    return false;
-  };
-
-  // Helper function: Update visibility of the clicked cell
-  updateBoardWithVisibility = (index: number): CellType[] => {
-    return this.state.board.map((cell: CellType) => {
-      if (cell.index === index) {
-        return { ...cell, visible: true }; // Update visibility of the clicked cell to true other attributes remain the same
-      }
-      return cell;
-    });
-  };
-
-  // Helper function: Check if all the cells left are mines or visible
-  isOnlyMinesLeft = (board: CellType[]): boolean => {
-    return board.every((cell: CellType) => {
-      // Check if the cell is visible or has a mine
-      return cell.visible || cell.hasMine;
-    });
-  };
-
-  // Helper function: Set all the cells to visible
-  revealAllCells = (board: CellType[]): CellType[] => {
-    return board.map((cell: CellType) => {
-      return { ...cell, visible: true };
     });
   };
 
