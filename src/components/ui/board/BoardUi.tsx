@@ -1,6 +1,6 @@
 import React from 'react';
-import Cell from '../components/cell/Cell';
-import { CellType } from '../types/CellType';
+import Cell from '../cell/Cell';
+import { CellType } from '../../../types/CellType';
 
 type BoardUiProps = {
   board: CellType[];

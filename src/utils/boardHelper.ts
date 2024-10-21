@@ -1,4 +1,4 @@
-import { CellType } from '../../types/CellType';
+import { CellType } from '../types/CellType';
 
 // Helper function: Find the clicked cell
 export const getClickedCell = (board: CellType[], index: number): CellType | undefined => {
