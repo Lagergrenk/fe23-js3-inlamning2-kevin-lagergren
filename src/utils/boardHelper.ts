@@ -31,7 +31,7 @@ export const isOnlyMinesLeft = (board: CellType[]): boolean => {
   });
 };
 
-// Helper function: Set all the cells to visible
+// Helper function: Set all the cells to visible = true
 export const revealAllCells = (board: CellType[]): CellType[] => {
   return board.map((cell: CellType) => {
     return { ...cell, visible: true };
